@@ -1,5 +1,5 @@
 //queue
-// Creates a node containing the data and a reference to the next item
+// Creates a node containing the value and a reference to the next item
 class _Node {
     constructor(value) {
         this.value = value;
@@ -11,8 +11,22 @@ class Queue {
         this.first = null;
         this.last = null;
     }
-    enqueue(data) {
-        const node = new _Node(data);
+    display() {
+        if (!this.first) {
+           return null;
+        }
+    
+        let ptr = this.first;
+       
+        while (ptr.next) {
+          console.log(ptr.value)
+          ptr = ptr.next;
+        }
+        console.log(ptr.value)
+        console.log('--------------')
+    }
+    enqueue(value) {
+        const node = new _Node(value);
 
         if (this.first === null) {
             this.first = node;
@@ -39,3 +53,15 @@ class Queue {
    }
 }
 
+let que = new Queue();
+
+//6
+// que.enqueue('starTrekQ')
+// que.enqueue('Kirk')
+que.enqueue('Spock')
+que.enqueue('Uhura')
+que.enqueue('Sulu')
+que.enqueue('Checkov')
+que.display()
+que.dequeue()
+que.display()

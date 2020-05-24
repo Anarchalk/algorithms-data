@@ -1,23 +1,19 @@
 const Stack = require('./stacks')
 
-function match (paren){
-    paren = paren.replace(/[^()]/ig,'')
-    console.log(paren)
-    const parenArr = paren.split('')
+const parenMatch = (str) => {
+    str = str.replace(/[^()]/ig,'')
+    str = str.split('')
+    const stack = new Stack()
 
-    let stack = new Stack();
-    stack.push(parenArr)
-
-
-    
+    for(let i in str) {
+        if(str[i] === '(') stack.push(str[i])
+        else {
+            if(stack.isEmpty()) return false
+            else stack.pop()
+        }
+    } 
+    return stack.isEmpty() ? true : false;
 }
 
-console.log(match('(1+2)-(7/8))'))
-(())
-
-
-)
-)
-(
-(
---------
+console.log(parenMatch('((()))(((())))'))
+console.log(parenMatch(')'))
